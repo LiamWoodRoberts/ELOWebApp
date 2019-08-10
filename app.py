@@ -129,3 +129,6 @@ def nav():
     return render_template("nav_bar.html")
 
 # export FLASK_APP=app.py
+
+if __name__ == "__main__":
+    app.run()
