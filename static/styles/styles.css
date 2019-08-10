@@ -1,0 +1,123 @@
+body{
+    background:white;
+    color: white;
+    font-family: Perpetua;
+    margin:0;
+    padding:0;
+}
+
+h1 {
+    color:rgb(230, 200, 12)
+}
+ul {
+    margin:auto;
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+li.foot {
+    margin: auto;
+    height: auto;
+    width:500px;
+    padding: 3px;
+}
+
+div {
+    margin: auto;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+div.loyalty {
+    width: 200px;
+    height:200px;
+}
+div.nav_bar {
+    margin:auto;
+    padding:0;
+    width: 30%;
+    display:flex;
+}
+
+div.metrics {
+    width:800px;
+}
+div.big_table {
+    max-width:90%;
+    height:120px;
+    overflow-x:auto;
+}
+
+div.foot {
+    width:100px;
+}
+table {
+    border:2px;
+    margin:auto;
+    border-collapse: collapse;
+}
+
+th {
+    padding:4px;
+    border-bottom: 2px solid;
+    text-align: center;
+}
+
+th.bordered {
+    border: 2px solid;
+}
+
+td {
+    padding:4px;
+    text-align: center;
+}
+
+td.bordered {
+    border: 2px solid;
+}
+
+a {
+    margin:auto;
+    font-size:30px;
+    color:whitesmoke;
+}
+
+a.foot {
+    font-size:20px;
+    text-align: center;
+}
+
+section {
+    margin:5px;
+    padding:20px;
+    background: rgb(50,70,130);
+    display: flex;
+    flex-direction:column;
+}
+
+section.nav {
+    margin:5px;
+    padding:5px;
+    background:rgb(230, 125, 12);
+    flex-direction: row;
+}
+
+section.foot {
+    margin:5px;
+    padding:5px;
+    flex-direction: row;
+}
+img.headshot {
+    border-radius: 50%;
+    width:200px;
+    height:200px;
+
+}
+
+img.icon {
+    width: 50px;
+    height: auto;
+}

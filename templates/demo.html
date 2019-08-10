@@ -1,0 +1,100 @@
+{% extends "nav_bar.html" %}
+{% block content %}
+<section style="flex-direction:row;">
+  <div>
+    <h1>ELO Loyalty Predictions</h1>
+  </div>
+</section>
+  <section>
+    <ul>
+        <h1> Customer Profile </h1>
+    </ul>
+    <ul>
+        <img src="static/images/headshot-placeholder.jpg" class="headshot">
+        <div class="loyalty">
+          <table>
+              <thead>
+                  <tr>
+                      <th colspan="2">Predicted Loyalty</th>
+                  </tr>
+                  <tr>
+                    <th>Score</th>
+                    <th>Percentile</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>{{ pred }}</td>
+                      <td>{{ percentile}}</td>
+                  </tr>
+              </tbody>
+            </table>
+      </div>
+
+    </ul>
+    <ul>
+      <h1>Key Metrics</h1>
+    </ul>
+    <ul>
+      <table style="max-width:600px;">
+        <thead>
+            <tr>
+                {% for col in metric_cols[:3] %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for val in metric_vals[:3] %}
+                <td>{{val}}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+      </table>
+    </ul>
+    <ul>
+        <table style="max-width:300px">
+          <thead>
+              <tr>
+                  {% for col in metric_cols[3:] %}
+                  <th>{{ col }}</th>
+                  {% endfor %}
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  {% for val in metric_vals[3:] %}
+                  <td>{{val}}</td>
+                  {% endfor %}
+              </tr>
+          </tbody>
+        </table>
+      </ul>
+
+  </section>
+  <section>
+    <ul>
+      <h1> Model Features </h1>
+    </ul>
+    <div class="big_table">
+      <table>
+          <thead>
+              <tr>
+                  {% for col in sample_cols %}
+                  <th class="bordered">{{ col }}</th>
+                  {% endfor %}
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  {% for val in sample_vals %}
+                  <td class="bordered">{{val}}</td>
+                  {% endfor %}
+              </tr>
+          </tbody>
+        </table>
+    </div>
+  </section>
+  
+{% endblock content %}
