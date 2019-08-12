@@ -1,15 +1,18 @@
 {% extends "nav_bar.html" %}
 {% block content %}
-<section style="flex-direction:row;">
-  <div>
+<section>
+  <div class="text">
     <h1>ELO Loyalty Predictions</h1>
+  </div>
+  <div class="text">
+    <p>This page shows model predictions for a particular customer from the data set. The full list of features created from aggregations of the customer transaction history are also summarized in the "Model Features" table.</p>
   </div>
 </section>
   <section>
-    <ul>
-        <h1> Customer Profile </h1>
-    </ul>
-    <ul>
+    <div class="text">
+        <h1  style="padding:4px;"> Customer Profile </h1>
+    </div>
+    <div style="flex-direction: row;">
         <img src="static/images/headshot-placeholder.jpg" class="headshot">
         <div class="loyalty">
           <table>
@@ -29,13 +32,13 @@
                   </tr>
               </tbody>
             </table>
+            <a href="/demo"><button>Next Customer</button></a>
       </div>
-
-    </ul>
-    <ul>
+    </div>
+    <div class="text">
       <h1>Key Metrics</h1>
-    </ul>
-    <ul>
+    </div>
+    <div class="text">
       <table style="max-width:600px;">
         <thead>
             <tr>
@@ -52,8 +55,8 @@
             </tr>
         </tbody>
       </table>
-    </ul>
-    <ul>
+    </div>
+    <div>
         <table style="max-width:300px">
           <thead>
               <tr>
@@ -70,13 +73,13 @@
               </tr>
           </tbody>
         </table>
-      </ul>
+      </div>
 
   </section>
   <section>
-    <ul>
+    <div>
       <h1> Model Features </h1>
-    </ul>
+    </div>
     <div class="big_table">
       <table>
           <thead>
