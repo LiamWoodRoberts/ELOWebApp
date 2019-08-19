@@ -6,6 +6,7 @@ import numpy as np
 import warnings
 from scipy import stats
 from elo_params import params
+import utils
 
 def get_sample(n_rows):
     model_params = params()
@@ -84,11 +85,22 @@ def demo_eval():
     pred_pct,actual_pct = get_percentiles(pred,target,sample)
     return sample[features],metrics,pred,target,pred_pct,actual_pct
 
+def get_demo_values():
+        sample_df = get_sample(1)
+        features = get_features(sample_df)
+        sample_df = sample_df[features]
+        sample_cols = sample_df.columns
+        sample_vals = sample_df.iloc[0].values.tolist()
+        metrics = get_metrics(sample_df)
+        metric_cols,metric_vals = utils.parse_metrics(metrics)
+        preds = round(get_prediction(sample_df)[0],2)
+        percentile = get_percentile(preds)
+        return sample_cols,sample_vals,metric_cols,metric_vals,preds,percentile
+
 # key metrics 
 # Save target as csv
 # output values as percentile
 
 if __name__ == "__main__":
     warnings.filterwarnings('ignore')
-    sample = get_sample(1)
-    print(sample)
+    print(get_demo_values())

@@ -4,12 +4,16 @@ import utils
 from elo_params import params
 
 # Other Modules
-from flask import Flask,render_template,request,jsonify,url_for,redirect,Request,Blueprint
+from flask import Flask,render_template,request,jsonify,url_for,redirect,Blueprint
 import requests
 import json
-from flask_restplus import Api,Resource,fields,reqparse
+from flask_restplus import Api,Resource,reqparse
 
-app = Flask(__name__)
+app = Flask(__name__,
+                template_folder='templates',
+                static_folder='static')
+                
+app.config.from_pyfile('./config/gunicorn.conf.py')
 
 blueprint = Blueprint('api',__name__,url_prefix='/elo_api')
 api_name = 'Customer Loyalty Prediction Model'
@@ -32,9 +36,7 @@ parser.add_argument('sample',type=str)
 class metrics(Resource):
     def get(self):
         '''returns key model metrics from a random sample'''
-        host_url = request.url_root
-        sample_r = requests.get(host_url+"elo_api/sample")
-        sample_df = utils.parse_sample(sample_r)
+        sample_df = predictor.get_sample(1)
         customer_metrics = predictor.get_metrics(sample_df)
         return customer_metrics
 
@@ -50,9 +52,7 @@ class metrics(Resource):
 class evaluate(Resource):
     def get(self):
         '''returns model predictions and actual values from a random sample'''
-        host_url = request.url_root
-        sample_r = requests.get(host_url+"elo_api/sample")
-        sample_df = utils.parse_sample(sample_r)
+        sample_df = predictor.get_sample(1)
         features = predictor.get_features(sample_df)
         preds,target = predictor.get_sample_eval(sample_df)
         return jsonify(preds=preds.tolist(),target=target.tolist())
@@ -69,9 +69,7 @@ class evaluate(Resource):
 class predict(Resource):
     def get(self):
         '''returns model predictions for a random sample'''
-        host_url = request.url_root
-        sample_r = requests.get(host_url+"elo_api/sample")
-        sample_df = utils.parse_sample(sample_r)
+        sample_df = predictor.get_sample(1)
         preds = predictor.get_prediction(sample_df)
         return jsonify(preds.tolist())
 
@@ -96,7 +94,6 @@ class percentiles(Resource):
         percentile = predictor.get_percentile(pred)
         return percentile 
     
-
 # APP ROUTES
 @app.route("/")
 @app.route("/home")
@@ -105,20 +102,14 @@ def home():
 
 @app.route("/demo")
 def demo():
-    host_url = request.url_root
-    sample_r = requests.get(host_url+"elo_api/sample").json()
-    sample_cols,sample_vals = utils.parse_sample_cols_vals(sample_r)
-    metrics_r = requests.post(host_url+"elo_api/metrics",data={'sample':sample_r}).json()
-    metric_cols,metric_vals = utils.parse_metrics(metrics_r)
-    predict_r = requests.post(host_url+"elo_api/predict",data={"sample":sample_r}).json()
-    percentile_r = requests.post(host_url+"elo_api/percentiles",data={"pred":predict_r}).json()
+    sample_cols,sample_vals,metric_cols,metric_vals,preds,percentile = predictor.get_demo_values()
     return render_template("demo.html",
                             sample_cols=sample_cols,
                             sample_vals=sample_vals,
                             metric_cols=metric_cols,
                             metric_vals=metric_vals,
-                            pred=predict_r,
-                            percentile=percentile_r)
+                            pred=preds,
+                            percentile=percentile)
 
 @app.route("/contact")
 def contact():

@@ -17,9 +17,9 @@ class params:
         # Path to Folder
 
         # Local Path
-        # self.folder_path = "/Users/LiamRoberts/Desktop/ELOWebApp/static/data/"
+        self.folder_path = "./static/data/"
 
         # Heroku Path
-        self.folder_path = "/app/static/data/"
+        # self.folder_path = "/app/static/data/"
         
         return
