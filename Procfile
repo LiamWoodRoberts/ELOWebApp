@@ -1,1 +1,1 @@
-web: gunicorn -c config/gunicorn.conf.py 'app:app'
+web: bin/start-nginx uwsgi uwsgi.ini

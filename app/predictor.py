@@ -1,3 +1,8 @@
+# Module Imports
+from app import utils
+from app.elo_params import params
+
+# Package Imports
 import lightgbm as lgb
 import pandas as pd 
 import os
@@ -5,8 +10,6 @@ import re
 import numpy as np 
 import warnings
 from scipy import stats
-from elo_params import params
-import utils
 
 def get_sample(n_rows):
     model_params = params()
