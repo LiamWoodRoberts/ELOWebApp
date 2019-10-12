@@ -17,23 +17,35 @@ https://www.kaggle.com/c/elo-merchant-category-recommendation
 
 ### Files
 
-- **app.py:** Houses flask application.
+#### BASE FOLDER:
 
-- **predictor.py:** Contains code called by API to make predictions and generate samples from the dataset.
+- **Procfile:** Contatins specifics fo gunicorn app hosting.
+- **run.py:** Contains executable for flask application
+- **config.py:** Contains config settings for flask application
+- **uwsgi.ini:** Contains uwsgi configurations for application
+- **requirements.txt:** Used to install environment dependencies for the application.
 
-- **elo_params.py:** Contains parameters such as file path called by predictor.py file.
+> #### /config:
+> - **nginx.conf.erb:** Contains nginx config settings for serving site files
+> - **uwsgi_params:** Contains uwsgi parameters for nginx and uwsgi.
 
-- **utils.py:** Contains python code for parsing API responses, called by app.py.
+> #### /app:
 
-- **Procfile:** contatins specifics fo gunicorn app hosting.
+> - **__init__.py:** Script for initializing flask application.
 
-- **requirements.txt:** used to install environment dependencies for the application.
+> - **api_views.py:** Contains api routes for flask application
 
-### Folders
+> - **elo_params.py:** Contains parameters such as file path called by predictor.py file.
 
-- **static:** contains data files,images, and css styles.
+> - **predictor.py:** Contains code called by API to make predictions and generate samples from the dataset.
 
-- **templates:** contains html files for web app.
+> - **utils.py:** Contains python code for parsing API responses, called by app.py.
+
+> - **views.py:** Contains page routes for flask application.
+
+>> **/static:** Contains data files,images, and css styles.
+
+>> **/templates:** Contains html files for web app.
 
 ### Running the Application Locally:
 
