@@ -13,7 +13,7 @@ joblib==0.13.2
 jsonschema==3.0.2
 lightgbm==2.2.3
 MarkupSafe==1.1.1
-numpy==1.17.0
+numpy==1.22.0
 pandas==0.25.0
 pyrsistent==0.15.4
 python-dateutil==2.8.0
